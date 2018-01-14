@@ -29,7 +29,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
-import { NotFoundComponent } from './not-found/not-found.component'; 
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ArchiveHomeComponent } from './archive-home/archive-home.component';
+import { ArchiveComponent } from './archive/archive.component'; 
 
 @NgModule({
   declarations: [
@@ -54,12 +56,40 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HomeComponent,
     GithubProfileComponent,
     NotFoundComponent,
+    ArchiveHomeComponent,
+    ArchiveComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      {
+        path: '', 
+        component: ArchiveHomeComponent
+      },
+      {
+        path: 'archive/:year/:month',
+        component: ArchiveComponent
+      }
+      // {
+      //   path: 'followers/:id/:username', 
+      //   component: GithubProfileComponent
+      // },//order is important
+      // {
+      //   path: 'followers', 
+      //   component: GithubFollowersComponent
+      // },
+      // {
+      //   path: 'posts', 
+      //   component: PostsComponent
+      // },
+      // {
+      //   path: '**', 
+      //   component: NotFoundComponent
+      // },
+    ])
   ],
   providers: [
     PostService,
